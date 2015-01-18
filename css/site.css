@@ -43,6 +43,9 @@ footer .fa {
   margin: 10px 5px;
   padding: 8px;
 }
+footer .fa-envelope {
+  transform: scale(0.9);
+}
 footer a:link {
   transition: color 0.2s;
 }
