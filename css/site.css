@@ -8,6 +8,9 @@ a:link,
 a:visited {
   color: #000;
 }
+a:focus {
+  outline: none;
+}
 svg {
   position: absolute;
   top: 50%;
