@@ -31,3 +31,9 @@ svg {
   font-size: 36px;
   padding: 4px;
 }
+.contact a:link {
+  transition: color 0.2s;
+}
+.contact a:hover {
+  color: #ffdfdd;
+}
