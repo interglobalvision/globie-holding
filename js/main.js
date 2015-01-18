@@ -144,11 +144,7 @@ $(function () {
     }
 
     // make globie blush on footer item hover
-<<<<<<< HEAD
     $('.contact a:link').hover(
-=======
-    $('footer a:link').hover(
->>>>>>> 51d6fcf7117a4698564321614eb812d71b50ce64
         function () {
             $('svg').find('#skin').css('fill','#FAAFBE');
         },
