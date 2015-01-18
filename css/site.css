@@ -8,12 +8,28 @@ a:link,
 a:visited {
   color: #000;
 }
+<<<<<<< HEAD
 svg {
+=======
+main {
+  width: 500px;
+  height: 600px;
+>>>>>>> 51d6fcf7117a4698564321614eb812d71b50ce64
   position: absolute;
   top: 50%;
   left: 50%;
   margin-left: -250px;
+<<<<<<< HEAD
   margin-top: -250px;
+=======
+  margin-top: -300px;
+}
+svg {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  margin-left: -250px;
+>>>>>>> 51d6fcf7117a4698564321614eb812d71b50ce64
 }
 #skin {
   transition: fill 0.5s;
@@ -24,6 +40,7 @@ svg {
 .blush {
   fill: #f00;
 }
+<<<<<<< HEAD
 .contact {
   margin: 20px;
 }
@@ -35,5 +52,25 @@ svg {
   transition: color 0.2s;
 }
 .contact a:hover {
+=======
+footer {
+  display: block;
+  position: relative;
+  text-align: center;
+  margin: 20px 0;
+}
+footer .fa {
+  font-size: 40px;
+  margin: 10px 5px;
+  padding: 4px;
+}
+footer .fa-envelope {
+  transform: scale(0.9);
+}
+footer a:link {
+  transition: color 0.2s;
+}
+footer a:hover {
+>>>>>>> 51d6fcf7117a4698564321614eb812d71b50ce64
   color: #ffdfdd;
 }
