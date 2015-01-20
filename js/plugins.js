@@ -107,10 +107,10 @@
     }
 
     smokeImage.src = "http://somethinghitme.com/projects/particle%20test/images/smoke.png";
+    
     smokeImage.onload = function () {
         render();
     }
-
 
     window.onresize = resizeMe;
     window.onload = resizeMe;
