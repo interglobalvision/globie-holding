@@ -3,13 +3,14 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+   MIKEY / CAS / PATRICK / GLOBIE
 
 # THANKS
 
-    <name>
+    Everyone who supported us along this journey
 
 # TECHNOLOGY COLOPHON
 
-    HTML5, CSS3
+    HTML, CSS
     Normalize.css, jQuery, Modernizr
+    Mechanical Keyboards
