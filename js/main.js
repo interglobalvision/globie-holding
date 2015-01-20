@@ -7,6 +7,7 @@ $(function () {
         rightball = globie.ellipse(280, 150, 27, 40).attr({}), // draw right eyeball in globie object
         body = globie.select("#globieBody"),
         globieBody = document.querySelector('#globie'),
+        globieLegs = document.querySelector('#legs'),
 
         lenl = Snap.path.getTotalLength(lefteye), // get length of left eye path
         lenr = Snap.path.getTotalLength(lefteye), // get length of right eye path
@@ -143,7 +144,7 @@ $(function () {
         });
     }
 
-    // make globie blush on footer item hover
+    // make globie blush on envelope hover
     $('.contact a:link').hover(
         function () {
             $('svg').find('#skin').css('fill','#FAAFBE');
@@ -152,5 +153,22 @@ $(function () {
             $('svg').find('#skin').css('fill','#FFFFFF');
         }
     );
+
+    /*
+    var bouncetime = 1800;
+    
+    var winH = $(window).height();
+
+    $('.envelope').css({'bottom':'100%','right':'30px'});
+  
+    function objectbounce() {
+        $('.envelope').animate({'bottom':'30px','right':'30px'}, { duration: bouncetime, easing: 'easeOutBounce', queue: false});
+        $('.envelope').animate({transform:'rotate(360deg)'}, { duration: bouncetime, easing: 'easeInQuad', queue: false});
+    }
+    
+    setTimeout(objectbounce,1000)*/
+
+    
+
 
 });
