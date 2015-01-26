@@ -12,5 +12,5 @@
 # TECHNOLOGY COLOPHON
 
     HTML, CSS
-    Normalize.css, jQuery, Modernizr
+    Normalize.css, jQuery
     Mechanical Keyboards
