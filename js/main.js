@@ -105,7 +105,7 @@ $(function () {
         ctx = canvas.getContext("2d");
 
     canvas.height = document.body.offsetHeight;
-    canvas.width = 300;
+    canvas.width = 500;
 
     var parts = [],
         minSpawnTime = 40,
@@ -135,7 +135,7 @@ $(function () {
                 ctx.save();
                 var offsetX = -parts[len].size/2,
                     offsetY = -parts[len].size/2;
-             
+
                 ctx.translate(parts[len].x-offsetX, parts[len].y-offsetY);
                 ctx.rotate(parts[len].angle / 180 * Math.PI);
                 ctx.globalAlpha  = parts[len].alpha;
@@ -167,20 +167,20 @@ $(function () {
     smoke.prototype.update = function () {
         this.lifeTime = new Date().getTime() - this.startLife;
         this.angle += 0.2;
-        
+
         var lifePerc = ((this.lifeTime / maxLifeTime) * 100);
 
         this.size = this.startSize + ((this.endSize - this.startSize) * lifePerc * .1);
 
         this.alpha = 1 - (lifePerc * .01);
         this.alpha = Math.max(this.alpha,0);
-        
+
         this.x += this.velX;
         this.y += this.velY;
     }
 
     smokeImage.src = "img/smoke.png";
-    
+
     smokeImage.onload = function () {
         render();
     }
