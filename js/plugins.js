@@ -106,7 +106,7 @@
         this.y += this.velY;
     }
 
-    smokeImage.src = "http://somethinghitme.com/projects/particle%20test/images/smoke.png";
+    smokeImage.src = "img/smoke.png";
     
     smokeImage.onload = function () {
         render();
