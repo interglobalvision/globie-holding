@@ -69,11 +69,11 @@ $(function () {
     });
 // END Eyeballs follow cursor
 
-// multiple game selector 
+// multiple game selector
     var games = 2; //number of games
-    
+
     var lastGame = $.cookie('lastGame'); //checks cookie for last game played
-        
+
     if (! lastGame) { // if lastGame cookie is null
         var thisGame = 1; // play game 1
     } else {
@@ -83,11 +83,11 @@ $(function () {
             var thisGame = 1; // return to play game 1
         }
     }
-    
+
     $.cookie('lastGame', thisGame); // set lastGame cookie with thisGame number
-// END multiple game selector 
-    
-// Game 1: Acne 
+// END multiple game selector
+
+// Game 1: Acne
     if (thisGame == 1) {
         $(document).on('mousedown', '.globieParts', function (e) {
             mX = e.pageX - $('#globie').offset().left;
@@ -103,15 +103,15 @@ $(function () {
         });
     }
 
-// Game 2: Eraser 
+// Game 2: Eraser
     if (thisGame == 2) {
         globieBody.setAttribute('class', 'globieParts');
         hole = 30;
-        
+
         $(document).on('mousemove', '.globieParts', function(e) {
             eX = (e.pageX - $('#globie').offset().left)-(hole/2);
             eY = (e.pageY - $('#globie').offset().top)-(hole/2);
-            $(document).on('mousedown.globie', function() {        
+            $(document).on('mousedown.globie', function() {
                 isMouseDown = true;
             });
             $(document).on('mouseup.globie', function() {
@@ -130,14 +130,14 @@ $(function () {
                     class: 'globieParts',
                 }).insertAfter(body);
             }
-            
+
             holeMath = Math.floor(Math.random() * 2) + 1;
             if (holeMath == 2) {
                 hole++;
             } else {
                 hole--;
             }
-            
+
             if (hole < 10) {
                 hole = 10;
             }
@@ -145,7 +145,7 @@ $(function () {
     }
 
     // make globie blush on envelope hover
-    $('.contact a:link').hover(
+    $('#envelope').hover(
         function () {
             $('svg').find('#skin').css('fill','#FAAFBE');
         },
@@ -156,19 +156,19 @@ $(function () {
 
     /*
     var bouncetime = 1800;
-    
+
     var winH = $(window).height();
 
     $('.envelope').css({'bottom':'100%','right':'30px'});
-  
+
     function objectbounce() {
         $('.envelope').animate({'bottom':'30px','right':'30px'}, { duration: bouncetime, easing: 'easeOutBounce', queue: false});
         $('.envelope').animate({transform:'rotate(360deg)'}, { duration: bouncetime, easing: 'easeInQuad', queue: false});
     }
-    
+
     setTimeout(objectbounce,1000)*/
 
-    
+
 
 
 });

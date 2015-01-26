@@ -24,7 +24,7 @@ a:focus
   height: 30px
   transform: rotate(1deg)
 
-svg
+#globie
     position: absolute
     top: 50%
     left: 50%
@@ -48,13 +48,19 @@ svg
     z-index: 1
     transform: rotate(2deg)
     a:link
-        transition: color .2s
+        transition: color .5s
     a:hover
         color: #FFDFDD
 
-.icon-mail
-    font-size: 40px
+#envelope
+    width: 40px
+    height: 40px
     padding: 0px
+    path
+      transition: fill 0.2s
+    &:hover
+      path
+        fill: #FAAFBE
 
 #canvas
     position: absolute
