@@ -69,80 +69,18 @@ $(function () {
     });
 // END Eyeballs follow cursor
 
-// multiple game selector
-    var games = 2; //number of games
-
-    var lastGame = $.cookie('lastGame'); //checks cookie for last game played
-
-    if (! lastGame) { // if lastGame cookie is null
-        var thisGame = 1; // play game 1
-    } else {
-        if (lastGame < games) { // if lastGame is less than total number of games
-            var thisGame = parseInt(lastGame) + 1; // play next game
-        } else { // if lastGame was the highest game number
-            var thisGame = 1; // return to play game 1
-        }
-    }
-
-    $.cookie('lastGame', thisGame); // set lastGame cookie with thisGame number
-// END multiple game selector
-
-// Game 1: Acne
-    if (thisGame == 1) {
-        $(document).on('mousedown', '.globieParts', function (e) {
-            mX = e.pageX - $('#globie').offset().left;
-            mY = e.pageY - $('#globie').offset().top;
-            zit = Math.floor(Math.random() * 20) + 10;
-            globie.ellipse(mX, mY, zit, zit).attr({
-                fill: 'url(#acne)',
-                class: 'globieParts hole',
-            }).insertAfter(body);
-        });
-        $(document).on('dblclick', function() {
-            $('#globieBody').remove(globieBody);
-        });
-    }
-
-// Game 2: Eraser
-    if (thisGame == 2) {
-        globieBody.setAttribute('class', 'globieParts');
-        hole = 30;
-
-        $(document).on('mousemove', '.globieParts', function(e) {
-            eX = (e.pageX - $('#globie').offset().left)-(hole/2);
-            eY = (e.pageY - $('#globie').offset().top)-(hole/2);
-            $(document).on('mousedown.globie', function() {
-                isMouseDown = true;
-            });
-            $(document).on('mouseup.globie', function() {
-                isMouseDown = false;
-                $(this).off('mouseup.globie');
-            });
-            $(document).on('click', function() {
-                globie.ellipse(eX, eY, hole, hole).attr({
-                    fill: '#A79AB5',
-                    class: 'globieParts',
-                }).insertAfter(body);
-            });
-            if (isMouseDown) {
-                globie.ellipse(eX, eY, hole, hole).attr({
-                    fill: '#A79AB5',
-                    class: 'globieParts',
-                }).insertAfter(body);
-            }
-
-            holeMath = Math.floor(Math.random() * 2) + 1;
-            if (holeMath == 2) {
-                hole++;
-            } else {
-                hole--;
-            }
-
-            if (hole < 10) {
-                hole = 10;
-            }
-        });
-    }
+    $(document).on('mousedown', '.globieParts', function (e) {
+        mX = e.pageX - $('#globie').offset().left;
+        mY = e.pageY - $('#globie').offset().top;
+        zit = Math.floor(Math.random() * 20) + 10;
+        globie.ellipse(mX, mY, zit, zit).attr({
+            fill: 'url(#acne)',
+            class: 'globieParts hole',
+        }).insertAfter(body);
+    });
+    $(document).on('dblclick', function() {
+        $('#globieBody').remove(globieBody);
+    });
 
     // make globie blush on envelope hover
     $('#envelope').hover(
