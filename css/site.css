@@ -487,7 +487,7 @@ a:focus {
           transition: fill 0.2s;
 }
 #envelope:hover path {
-  fill: #faafbe;
+  fill: #13f;
 }
 #canvas {
   position: absolute;
