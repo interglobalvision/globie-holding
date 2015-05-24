@@ -94,7 +94,7 @@ $(function () {
     }
 
     $.ajax({
-      url: "http://webcam.carlossolar.es/api/" + direction,
+      url: "https://ceaajxcodq.localtunnel.me/api/" + direction,
     });
     
   });
