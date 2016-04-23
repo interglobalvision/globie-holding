@@ -30,7 +30,7 @@ $(function () {
     $(document).mousemove(function (e) {
       moveEyes(e.pageX, e.pageY);
     });
-  } else { 
+  } else {
     if(window.DeviceOrientationEvent){
       window.addEventListener("deviceorientation", onDeviceOrientationChange, false);
     }
@@ -46,7 +46,7 @@ $(function () {
 
 
   function moveEyes(posX, posY) {
-    
+
     mX = posX - $('#globie').offset().left;
     mY = posY - $('#globie').offset().top;
 
@@ -86,36 +86,4 @@ $(function () {
     }
   }
 
-
-  /* KEYS TO MOVE THE CAM */
-
-  $(document).keydown( function(e) {
-    var direction;
-    switch(e.which) {
-      case 37: // left
-        direction = "left";
-        break;
-
-      case 38: // up
-        direction = "up";
-        break;
-
-      case 39: // right
-        direction = "right";
-        break;
-
-      case 40: // down
-        direction = "down";
-        break;
-
-      default: return; // exit this handler for other keys
-    }
-
-    $.ajax({
-      url: "https://ceaajxcodq.localtunnel.me/api/" + direction,
-    });
-    
-  });
-
 });
-  
