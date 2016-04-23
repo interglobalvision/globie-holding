@@ -25,11 +25,30 @@ $(function () {
     lpal = Snap.path.getPointAtLength(lefteye), // Returns the (x,y) coordinate in user space which is distance units along the path
     rpal = Snap.path.getPointAtLength(righteye); // Returns the (x,y) coordinate in user space which is distance units along the path
 
-  // Eyeballs follow cursor
-  $(document).mousemove(function (e) {
+  if( window.innerWidth > 720 ) {
+    // Eyeballs follow cursor
+    $(document).mousemove(function (e) {
+      moveEyes(e.pageX, e.pageY);
+    });
+  } else { 
+    if(window.DeviceOrientationEvent){
+      window.addEventListener("deviceorientation", onDeviceOrientationChange, false);
+    }
+  }
 
-    mX = e.pageX - $('#globie').offset().left;
-    mY = e.pageY - $('#globie').offset().top;
+  function onDeviceOrientationChange(event) {
+
+    var x = (event.gamma + 90) / 180 * window.innerWidth;
+    var y = (event.beta + 90) / 180 * window.innerHeight;
+
+    moveEyes(x,y);
+  }
+
+
+  function moveEyes(posX, posY) {
+    
+    mX = posX - $('#globie').offset().left;
+    mY = posY - $('#globie').offset().top;
 
     tl = Snap.angle(midl.x, midl.y, mX, mY) / 360;
     tr = Snap.angle(midr.x, midr.y, mX, mY) / 360;
@@ -65,8 +84,7 @@ $(function () {
         cy: rpaly
       });
     }
-
-  });
+  }
 
 
   /* KEYS TO MOVE THE CAM */
