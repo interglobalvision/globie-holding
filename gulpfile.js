@@ -16,20 +16,24 @@ var gulp = require('gulp');
   stylus = require('gulp-stylus'),
   autoprefixer = require('gulp-autoprefixer'),
   minifycss = require('gulp-minify-css'),
+  swiss = require('kouto-swiss'),
+
+  webserver = require('gulp-webserver'),
 
   imagemin = require('gulp-imagemin');
 
 function errorNotify(error){
-  notify.onError("Error: <%= error.message %>")
+  notify.onError("Error: <%= error.message %>");
   util.log(util.colors.red('Error'), error.message);
 }
 
 gulp.task('javascript', function() {
-  gulp.src('js/main.js')
+  return gulp.src('js/main.js')
   .pipe(sourcemaps.init())
   .pipe(jshint())
   .pipe(jshint.reporter('jshint-stylish'))
-  //.pipe(jscs('.jscsrc'))
+  .pipe(jscs('.jscsrc'))
+  .on('error', errorNotify)
   .pipe(uglify())
   .on('error', errorNotify)
   .pipe(rename({suffix: '.min'}))
@@ -40,7 +44,7 @@ gulp.task('javascript', function() {
 });
 
 gulp.task('javascript-library', function() {
-  gulp.src('js/library/*.js')
+  return gulp.src('js/library/*.js')
   .pipe(concat('library.js'))
   .pipe(gulp.dest('js'))
   .pipe(notify({ message: 'Javascript Library task complete' }));
@@ -49,7 +53,11 @@ gulp.task('javascript-library', function() {
 gulp.task('style', function() {
   return gulp.src('css/site.styl')
   .pipe(plumber())
-  .pipe(stylus())
+  .pipe(stylus({
+      use: [
+        swiss()
+      ],
+    }))
   .on('error', errorNotify)
   .pipe(autoprefixer())
   .on('error', errorNotify)
@@ -62,14 +70,14 @@ gulp.task('style', function() {
 });
 
 gulp.task('images', function () {
-    return gulp.src('src/images/*.*')
-    .pipe(cache('images'))
-    .pipe(imagemin({
-      progressive: false
-    }))
-    .on('error', errorNotify)
-    .pipe(gulp.dest('img/dist'))
-		.pipe(notify({ message: 'Images task complete' }));
+  return gulp.src('img/src/*.*')
+  .pipe(cache('images'))
+  .pipe(imagemin({
+    progressive: false
+  }))
+  .on('error', errorNotify)
+  .pipe(gulp.dest('img/dist'))
+	.pipe(notify({ message: 'Images task complete' }));
 });
 
 gulp.task('watch', function() {
@@ -79,4 +87,15 @@ gulp.task('watch', function() {
   gulp.watch(['img/src/**'], ['images']);
 });
 
-gulp.task('default', ['watch']);
+gulp.task('webserver', function() {
+  gulp.src('')
+    .pipe(webserver({
+      livereload: true,
+      port: 4444,
+      fallback: 'index.html',
+      open: true
+    }));
+});
+
+gulp.task('default', ['webserver', 'watch']);
+gulp.task('build', ['images', 'style', 'javascript-library', 'javascript']);
