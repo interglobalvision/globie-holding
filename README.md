@@ -1,5 +1,1 @@
-# Globie!
-
-Compline stylus with 
-
-`stylus -w -c -P site.styl`
+# Our website lol
