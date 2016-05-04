@@ -881,6 +881,9 @@ a:focus {
   padding-bottom: 10vh;
   min-height: 80vh;
 }
+.active-es {
+  display: none;
+}
 @media screen and (max-width: 1272px) {
   .container {
     margin: 0 auto;

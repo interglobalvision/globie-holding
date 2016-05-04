@@ -6,6 +6,8 @@ Site = {
   init: function() {
     var _this = this;
 
+    _this.Language.init();
+
     $(window).resize(function(){
       _this.onResize();
     });
@@ -26,6 +28,45 @@ Site = {
     });
   },
 };
+
+
+Site.Language = {
+  init: function() {
+    _this = this;
+
+    _this.specific = $('.lang-specific');
+    _this.contentEn = $('.active-en');
+    _this.contentEs = $('.active-es');
+
+    _this.bind();
+
+  },
+
+  bind: function() {
+    _this = this;
+
+    $('.lang-switch').click(function() {
+      var $this = $(this);
+
+      _this.switch($this.data('lang'));
+
+    });
+
+  },
+
+  switch: function(lang) {
+    _this = this;
+
+    _this.specific.hide();
+
+    if (lang === 'es') {
+      _this.contentEs.show();
+    } else {
+      _this.contentEn.show();
+    }
+
+  },
+}
 
 jQuery(document).ready(function () {
   'use strict';
