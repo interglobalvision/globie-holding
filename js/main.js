@@ -9,6 +9,7 @@ Site = {
     Globie.init();
 
     _this.Language.init();
+    _this.fixWidows();
 
     $(window).resize(function(){
       _this.onResize();
@@ -30,7 +31,6 @@ Site = {
     });
   },
 };
-
 
 Site.Language = {
   init: function() {
