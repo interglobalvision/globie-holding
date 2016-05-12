@@ -126,7 +126,9 @@ Globie = {
       });
     } else {
       if(window.DeviceOrientationEvent){
-        window.addEventListener('deviceorientation', _this.onDeviceOrientationChange, false);
+        window.addEventListener('deviceorientation', function(e) {
+          return _this.onDeviceOrientationChange(e);
+        }.bind(_this), false);
       }
     }
 
