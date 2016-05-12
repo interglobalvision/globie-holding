@@ -1,5 +1,5 @@
 /* jshint browser: true, devel: true, indent: 2, curly: true, eqeqeq: true, futurehostile: true, latedef: true, undef: true, unused: true */
-/* global jQuery, $, document, Site, Modernizr, Globie, Snap */
+/* global jQuery, $, document, Site, Globie, Snap */
 
 Site = {
   mobileThreshold: 601,
@@ -26,6 +26,7 @@ Site = {
     // utility class mainly for use on headines to avoid widows [single words on a new line]
     $('.js-fix-widows').each(function(){
       var string = $(this).html();
+
       string = string.replace(/ ([^ ]*)$/,'&nbsp;$1');
       $(this).html(string);
     });
@@ -36,9 +37,9 @@ Site.Language = {
   init: function() {
     var _this = this;
 
-    _this.specific = $('.lang-specific');
-    _this.contentEn = $('.active-en');
-    _this.contentEs = $('.active-es');
+    _this.$specific = $('.lang-specific');
+    _this.$contentEn = $('.active-en');
+    _this.$contentEs = $('.active-es');
 
     _this.bind();
 
@@ -59,12 +60,12 @@ Site.Language = {
   switch: function(lang) {
     var _this = this;
 
-    _this.specific.hide();
+    _this.$specific.hide();
 
     if (lang === 'es') {
-      _this.contentEs.show();
+      _this.$contentEs.show();
     } else {
-      _this.contentEn.show();
+      _this.$contentEn.show();
     }
 
   },
@@ -97,13 +98,13 @@ Globie = {
     // find center point of left eye
     _this.midl = {
       x: _this.bbl.x + (_this.bbl.width / 2),
-      y: _this.bbl.y + (_this.bbl.height / 2)
+      y: _this.bbl.y + (_this.bbl.height / 2),
     };
 
     // find center point of right eye
     _this.midr = {
       x: _this.bbr.x + (_this.bbr.width / 2),
-      y: _this.bbr.y + (_this.bbr.height / 2)
+      y: _this.bbr.y + (_this.bbr.height / 2),
     };
 
     // Returns the (x,y) coordinate in user space which is distance units along the path
@@ -164,24 +165,24 @@ Globie = {
     if (Snap.path.isPointInside(_this.lefteye, mX, mY)) {
       _this.leftball.attr({
         cx: mX,
-        cy: mY
+        cy: mY,
       });
     } else {
       _this.leftball.attr({
         cx: lpalx,
-        cy: lpaly
+        cy: lpaly,
       });
     }
 
     if (Snap.path.isPointInside(_this.righteye, mX, mY)) {
       _this.rightball.attr({
         cx: mX,
-        cy: mY
+        cy: mY,
       });
     } else {
       _this.rightball.attr({
         cx: rpalx,
-        cy: rpaly
+        cy: rpaly,
       });
     }
 
