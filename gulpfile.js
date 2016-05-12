@@ -10,6 +10,7 @@ var gulp = require('gulp');
   jscs = require('gulp-jscs'),
   uglify = require('gulp-uglify'),
   sourcemaps = require('gulp-sourcemaps'),
+  babel = require('gulp-babel'),
 
   cache = require('gulp-cached'),
 
@@ -28,12 +29,16 @@ function errorNotify(error){
 }
 
 gulp.task('javascript', function() {
-  return gulp.src('js/main.js')
+  gulp.src('js/main.js')
   .pipe(sourcemaps.init())
   .pipe(jshint())
   .pipe(jshint.reporter('jshint-stylish'))
   .pipe(jscs('.jscsrc'))
   .on('error', errorNotify)
+  .pipe(babel({
+    presets: ['es2015']
+  }))
+  .on('error', console.error.bind(console))
   .pipe(uglify())
   .on('error', errorNotify)
   .pipe(rename({suffix: '.min'}))
