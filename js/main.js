@@ -1,10 +1,12 @@
 /* jshint browser: true, devel: true, indent: 2, curly: true, eqeqeq: true, futurehostile: true, latedef: true, undef: true, unused: true */
-/* global jQuery, $, document, Site, Modernizr */
+/* global jQuery, $, document, Site, Modernizr, Globie, Snap */
 
 Site = {
   mobileThreshold: 601,
   init: function() {
     var _this = this;
+
+    Globie.init();
 
     _this.Language.init();
 
@@ -32,7 +34,7 @@ Site = {
 
 Site.Language = {
   init: function() {
-    _this = this;
+    var _this = this;
 
     _this.specific = $('.lang-specific');
     _this.contentEn = $('.active-en');
@@ -43,7 +45,7 @@ Site.Language = {
   },
 
   bind: function() {
-    _this = this;
+    var _this = this;
 
     $('.lang-switch').click(function() {
       var $this = $(this);
@@ -55,7 +57,7 @@ Site.Language = {
   },
 
   switch: function(lang) {
-    _this = this;
+    var _this = this;
 
     _this.specific.hide();
 
@@ -66,101 +68,127 @@ Site.Language = {
     }
 
   },
-}
+};
 
-jQuery(document).ready(function () {
-  'use strict';
+Globie = {
+  init: function() {
+    var _this = this;
 
-  Site.init();
+    // assign svg #globie as Snap object
+    var globie = Snap('#globie');
+    // select #leftEye from globie object
+    _this.lefteye = globie.select('#leftEye');
+    // draw left eyeball in globie object
+    _this.leftball = globie.ellipse(220, 150, 27, 40).attr({});
+    // select #rightEye from globie object
+    _this.righteye = globie.select('#rightEye');
+    // draw right eyeball in globie object
+    _this.rightball = globie.ellipse(280, 150, 27, 40).attr({});
 
-});
+    // get length of left eye path
+    _this.lenl = Snap.path.getTotalLength(_this.lefteye);
+    // get length of right eye path
+    _this.lenr = Snap.path.getTotalLength(_this.lefteye);
+    // get bounding box of left eye path
+    _this.bbl = Snap.path.getBBox(_this.lefteye);
+    // get bounding box of right eye path
+    _this.bbr = Snap.path.getBBox(_this.righteye);
 
-$(function () {
+    // find center point of left eye
+    _this.midl = {
+      x: _this.bbl.x + (_this.bbl.width / 2),
+      y: _this.bbl.y + (_this.bbl.height / 2)
+    };
 
-  var globie = Snap("#globie"), // assign svg #globie as Snap object
-    lefteye = globie.select("#leftEye"), // select #leftEye from globie object
-    leftball = globie.ellipse(220, 150, 27, 40).attr({}), // draw left eyeball in globie object
-    righteye = globie.select("#rightEye"), // select #rightEye from globie object
-    rightball = globie.ellipse(280, 150, 27, 40).attr({}), // draw right eyeball in globie object
-    body = globie.select("#globieBody"),
-    globieBody = document.querySelector('#globie'),
-    globieLegs = document.querySelector('#legs'),
+    // find center point of right eye
+    _this.midr = {
+      x: _this.bbr.x + (_this.bbr.width / 2),
+      y: _this.bbr.y + (_this.bbr.height / 2)
+    };
 
-    lenl = Snap.path.getTotalLength(lefteye), // get length of left eye path
-    lenr = Snap.path.getTotalLength(lefteye), // get length of right eye path
-    bbl = Snap.path.getBBox(lefteye), // get bounding box of left eye path
-    bbr = Snap.path.getBBox(righteye), // get bounding box of right eye path
-    midl = {
-      x: bbl.x + (bbl.width / 2),
-      y: bbl.y + (bbl.height / 2)
-    }, // find center point of left eye
-    midr = {
-      x: bbr.x + (bbr.width / 2),
-      y: bbr.y + (bbr.height / 2)
-    }, // find center point of right eye
+    // Returns the (x,y) coordinate in user space which is distance units along the path
+    _this.lpal = Snap.path.getPointAtLength(_this.lefteye);
+    // Returns the (x,y) coordinate in user space which is distance units along the path
+    _this.rpal = Snap.path.getPointAtLength(_this.righteye);
 
-    lpal = Snap.path.getPointAtLength(lefteye), // Returns the (x,y) coordinate in user space which is distance units along the path
-    rpal = Snap.path.getPointAtLength(righteye); // Returns the (x,y) coordinate in user space which is distance units along the path
+    _this.bind();
 
-  if( window.innerWidth > 720 ) {
-    // Eyeballs follow cursor
-    $(document).mousemove(function (e) {
-      moveEyes(e.pageX, e.pageY);
-    });
-  } else {
-    if(window.DeviceOrientationEvent){
-      window.addEventListener("deviceorientation", onDeviceOrientationChange, false);
+  },
+
+  bind: function() {
+    var _this = this;
+
+    // mobile width check to be made does hover exist check
+    if ( window.innerWidth > 720 ) {
+      // Eyeballs follow cursor
+      $(document).mousemove(function (e) {
+        _this.moveEyes(e.pageX, e.pageY);
+      });
+    } else {
+      if(window.DeviceOrientationEvent){
+        window.addEventListener('deviceorientation', _this.onDeviceOrientationChange, false);
+      }
     }
-  }
 
-  function onDeviceOrientationChange(event) {
+  },
+
+  onDeviceOrientationChange: function(event) {
+    var _this = this;
 
     var x = (event.gamma + 90) / 180 * window.innerWidth;
     var y = (event.beta - 45 + 90) / 180 * window.innerHeight;
 
-    moveEyes(x,y);
-  }
+    _this.moveEyes(x, y);
 
+  },
 
-  function moveEyes(posX, posY) {
+  moveEyes: function(posX, posY) {
+    var _this = this;
 
-    mX = posX - $('#globie').offset().left;
-    mY = posY - $('#globie').offset().top;
+    var mX = posX - $('#globie').offset().left;
+    var mY = posY - $('#globie').offset().top;
 
-    tl = Snap.angle(midl.x, midl.y, mX, mY) / 360;
-    tr = Snap.angle(midr.x, midr.y, mX, mY) / 360;
+    var tl = Snap.angle(_this.midl.x, _this.midl.y, mX, mY) / 360;
+    var tr = Snap.angle(_this.midr.x, _this.midr.y, mX, mY) / 360;
 
-    lpal = lefteye.getPointAtLength((tl * lenl) % lenl);
-    lpalx = lpal.x;
-    lpaly = lpal.y;
+    var lpal = _this.lefteye.getPointAtLength((tl * _this.lenl) % _this.lenl);
+    var lpalx = lpal.x;
+    var lpaly = lpal.y;
 
-    rpal = righteye.getPointAtLength((tr * lenr) % lenr);
-    rpalx = rpal.x;
-    rpaly = rpal.y;
+    var rpal = _this.righteye.getPointAtLength((tr * _this.lenr) % _this.lenr);
+    var rpalx = rpal.x;
+    var rpaly = rpal.y;
 
-    if (Snap.path.isPointInside(lefteye, mX, mY)) {
-      leftball.attr({
+    if (Snap.path.isPointInside(_this.lefteye, mX, mY)) {
+      _this.leftball.attr({
         cx: mX,
         cy: mY
       });
     } else {
-      leftball.attr({
+      _this.leftball.attr({
         cx: lpalx,
         cy: lpaly
       });
     }
 
-    if (Snap.path.isPointInside(righteye, mX, mY)) {
-      rightball.attr({
+    if (Snap.path.isPointInside(_this.righteye, mX, mY)) {
+      _this.rightball.attr({
         cx: mX,
         cy: mY
       });
     } else {
-      rightball.attr({
+      _this.rightball.attr({
         cx: rpalx,
         cy: rpaly
       });
     }
-  }
+
+  },
+};
+
+jQuery(document).ready(function () {
+  'use strict';
+
+  Site.init();
 
 });
