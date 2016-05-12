@@ -73,7 +73,7 @@ ul.u-inline-list li {
 @font-face {
   font-family: 'Liberation Serif';
   src: url("fonts/subset-LiberationSerif-Italic.eot");
-  src: url("subset-LiberationSerif-Italic.eot?#iefix") format('embedded-opentype'), url("subset-LiberationSerif-Italic.woff2") format('woff2'), url("subset-LiberationSerif-Italic.woff") format('woff'), url("subset-LiberationSerif-Italic.ttf") format('truetype'), url("subset-LiberationSerif-Italic.svg#LiberationSerif-Italic") format('svg');
+  src: url("fonts/subset-LiberationSerif-Italic.eot?#iefix") format('embedded-opentype'), url("fonts/subset-LiberationSerif-Italic.woff2") format('woff2'), url("fonts/subset-LiberationSerif-Italic.woff") format('woff'), url("fonts/subset-LiberationSerif-Italic.ttf") format('truetype'), url("fonts/subset-LiberationSerif-Italic.svg#LiberationSerif-Italic") format('svg');
   font-weight: normal;
   font-style: italic;
 }
