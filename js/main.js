@@ -8,6 +8,7 @@ Site = {
 
     Globie.init();
 
+    _this.Language.init();
     _this.fixWidows();
 
     $(window).resize(function(){
@@ -28,6 +29,44 @@ Site = {
       string = string.replace(/ ([^ ]*)$/,'&nbsp;$1');
       $(this).html(string);
     });
+  },
+};
+
+Site.Language = {
+  init: function() {
+    var _this = this;
+
+    _this.specific = $('.lang-specific');
+    _this.contentEn = $('.active-en');
+    _this.contentEs = $('.active-es');
+
+    _this.bind();
+
+  },
+
+  bind: function() {
+    var _this = this;
+
+    $('.lang-switch').click(function() {
+      var $this = $(this);
+
+      _this.switch($this.data('lang'));
+
+    });
+
+  },
+
+  switch: function(lang) {
+    var _this = this;
+
+    _this.specific.hide();
+
+    if (lang === 'es') {
+      _this.contentEs.show();
+    } else {
+      _this.contentEn.show();
+    }
+
   },
 };
 

@@ -1,8 +1,14 @@
 @import "kouto-swiss"
-
-@import "sanitize"
 @import "helpers"
-@import "icons"
+
+// FONTS
+
+@import "fonts"
+// regular Cothan Sans IVG version
+// italic Liberation Sans Italic
+// bold Bagnard
+
+// ******************************************************
 
 meyer-reset()
 box-sizing-reset()
@@ -70,15 +76,15 @@ $margin-basic = ($gutter * 2)
 $margin-mid = ($gutter * 3.5)
 $margin-large = ($gutter * 5)
 
-$font-size-basic = 15px
+$font-size-basic = 40px
 $font-size-larger = 1.3rem
 $font-size-h3 = golden-ratio(1rem , 1)
 $font-size-h2 = golden-ratio(1rem , 1.5)
 $font-size-h1 = golden-ratio(1rem , 2)
 
-$font-leading-basic = 1.35
-$font-leading-tighter = 1.15
-$font-leading-larger = 1.45
+$font-leading-basic = 1.4
+$font-leading-tighter = 1.35
+$font-leading-larger = 1.5
 
 $font-tracking-basic = 0.001em
 $font-tracking-wider = 0.05em
@@ -91,7 +97,7 @@ $color-white-soft = rgb(253, 253, 253)
 // TYPOGRAPHY
 
 html
-  font-family: font-stack('Helvetica')
+  font-family: 'Cotham Sans IGV Version', sans-serif
   font-size: $font-size-basic
   letter-spacing: $font-tracking-basic
 
@@ -254,22 +260,25 @@ html, body
   height: 100%
   background: white
 
-a:link, a:visited
-  color: rgb(0,0,0)
+a
+  font-family: 'Liberation Serif', serif
+  font-style: italic
+  &:hover
+    font-family: 'Bagnard', serif
+    font-style: normal
+    font-size: .9em
+    line-height: $font-leading-tighter
+  &:link,
+  &:visited
+    color: inherit
+  &:focus
+    outline: none
 
-a:focus
-  outline: none
+// ******************************************************
 
-#logotype
-  position: fixed
-  bottom: 10px
-  right: 0px
-  width: 100%
-
-#logo
-  width: 100%
-  height: 30px
-  transform: rotate(1deg)
+#header
+  position: relative
+  height: 86vh
 
 #globie, #legs
   position: absolute
@@ -284,26 +293,26 @@ a:focus
 #legs
   z-index: 0
 
-#contact
-  position:absolute
-  right:30px
-  bottom:30px
-  z-index: 1
-  transform: rotate(2deg)
-  a:link
-    transition: color .5s
-  a:hover
-    color: #FFDFDD
-
-#envelope
-  width: 40px
-  height: 40px
-  padding: 0px
-  path
-    transition: fill 0.2s
-  &:hover
-    path
-      fill: #13F
+// #contact
+//   position:absolute
+//   right:30px
+//   bottom:30px
+//   z-index: 1
+//   transform: rotate(2deg)
+//   a:link
+//     transition: color .5s
+//   a:hover
+//     color: #FFDFDD
+//
+// #envelope
+//   width: 40px
+//   height: 40px
+//   padding: 0px
+//   path
+//     transition: fill 0.2s
+//   &:hover
+//     path
+//       fill: #13F
 
 #canvas
   position: absolute
@@ -315,12 +324,25 @@ a:focus
 
 // ******************************************************
 
+#content
+  padding-top: 10vh
+  padding-bottom: 10vh
+  min-height: 80vh
+
+  // english first
+
+.active-es
+  display: none
+
+
+// ******************************************************
+
 // MEDIA QUERIES
 
 @media screen and (max-width: ($col * $cols)+($gutter * $cols))
 
   @import "responsive/desktop-mid"
 
-@media screen and (max-width: 601px)
+@media screen and (max-width: 1008px)
 
   @import "responsive/mobile"
