@@ -43,6 +43,8 @@ Site.Language = {
 
     _this.bind();
 
+    _this.detectLang();
+
   },
 
   bind: function() {
@@ -51,13 +53,13 @@ Site.Language = {
     $('.lang-switch').click(function() {
       var $this = $(this);
 
-      _this.switch($this.data('lang'));
+      _this.switchLang($this.data('lang'));
 
     });
 
   },
 
-  switch: function(lang) {
+  switchLang: function(lang) {
     var _this = this;
 
     _this.$specific.hide();
@@ -69,6 +71,16 @@ Site.Language = {
     }
 
   },
+
+  detectLang: function() {
+    // Detect browser language
+     var userLang = navigator.language || navigator.userLanguage; 
+
+     if ( userLang.indexOf('es') > -1 ) {
+       _this.switchLang('es');
+     }
+  }
+
 };
 
 Globie = {
