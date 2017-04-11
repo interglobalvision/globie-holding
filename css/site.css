@@ -603,7 +603,7 @@ a,
 a:active,
 a:visited {
   color: inherit;
-  text-decoration: none;
+  text-underline-position: under;
 }
 .margin-top-micro {
   margin-top: 4.944271909998838px;
@@ -691,23 +691,6 @@ body {
   height: 100%;
   background: #fff;
 }
-a {
-  font-family: 'Liberation Serif', serif;
-  font-style: italic;
-}
-a:hover {
-  font-family: 'Bagnard', serif;
-  font-style: normal;
-  font-size: 0.9em;
-  line-height: 1.35;
-}
-a:link,
-a:visited {
-  color: inherit;
-}
-a:focus {
-  outline: none;
-}
 #header {
   position: relative;
   height: 86vh;
@@ -745,47 +728,47 @@ a:focus {
 @media screen and (max-width: 1272px) {
   .container {
     margin: 0 auto;
-    width: 1008px;
+    width: 912px;
   }
   .col {
-    margin-left: 7px;
-    margin-right: 7px;
+    margin-left: 6px;
+    margin-right: 6px;
   }
   .col-1 {
-    width: 70px;
+    width: 64px;
   }
   .col-2 {
-    width: 154px;
+    width: 140px;
   }
   .col-3 {
-    width: 238px;
+    width: 216px;
   }
   .col-4 {
-    width: 322px;
+    width: 292px;
   }
   .col-5 {
-    width: 406px;
+    width: 368px;
   }
   .col-6 {
-    width: 490px;
+    width: 444px;
   }
   .col-7 {
-    width: 574px;
+    width: 520px;
   }
   .col-8 {
-    width: 658px;
+    width: 596px;
   }
   .col-9 {
-    width: 742px;
+    width: 672px;
   }
   .col-10 {
-    width: 826px;
+    width: 748px;
   }
   .col-11 {
-    width: 910px;
+    width: 824px;
   }
   .col-12 {
-    width: 994px;
+    width: 900px;
   }
 }
 @media screen and (max-width: 1008px) {
