@@ -74,12 +74,12 @@ Site.Language = {
 
   detectLang: function() {
     // Detect browser language
-     var userLang = navigator.language || navigator.userLanguage; 
+     var userLang = navigator.language || navigator.userLanguage;
 
      if ( userLang.indexOf('es') > -1 ) {
        _this.switchLang('es');
      }
-  }
+  },
 
 };
 
