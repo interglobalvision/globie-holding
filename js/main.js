@@ -15,6 +15,10 @@ Site = {
       _this.onResize();
     });
 
+    console.log('%c\Siempre estamos buscando desarrolladorxs talentosxs para unirse a nuestro equipo en CDMX. Contactanos en globie@interglobal.vision si estas interesadx en trabajar con nosotorxs. :)', 'background: black; color: white; display: block; font-size: 28px;');
+    console.log('%c—', 'background: black; color: white; display: block; font-size: 28px;');
+    console.log('%c\We\'re always looking for talented developers to join the team in CDMX. Contact us at globie@interglobal.vision if you\'re interested in working with us. :)', 'background: black; color: white; display: block; font-size: 28px;');
+
   },
 
   onResize: function() {
